@@ -6,26 +6,7 @@
     <title>Admin Login - Reduce Food Wastage</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="CSS/adminLogin.css"> <!-- Linking external CSS -->
-    <script>
-        // Client-side form validation
-        function validateForm() {
-            var email = document.getElementById("email").value;
-            var password = document.getElementById("password").value;
-            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            if (!emailPattern.test(email)) {
-                alert("Please enter a valid email address.");
-                return false;
-            }
-
-            if (password.length < 8) {
-                alert("Password must be at least 8 characters long.");
-                return false;
-            }
-
-            return true;
-        }
-    </script>
+    
 </head>
 <body>
     <!-- Moving food objects background -->
@@ -64,18 +45,18 @@
         <!-- Admin Login Form -->
         <div class="form-container">
             <h2>Login Form</h2>
-            <form action="/loginAdmin" method="post" onsubmit="return validateForm()"> <!-- Added onsubmit event -->
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Login</button>
-                <a href="home.jsp" class="btn btn-secondary btn-block mt-3">Back to Home</a>
-            </form>
+            <form action="/loginAdmin" method="post" onsubmit="return validateForm()"> 
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Login</button>
+</form>
+
         </div>
     </div>
 

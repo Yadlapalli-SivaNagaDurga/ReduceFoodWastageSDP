@@ -22,25 +22,27 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private DonorRepository donorRepository;
    
-    @Override
-    public Admin validateAdmin(String email, String password) {
-        return adminRepository.findByEmailAndPassword(email, password);
-    }
 
     @Override
-    public void updateAdminPassword(String email, String newPassword) {
-        Admin admin = adminRepository.findByEmail(email);
+    public Admin validateAdmin(String username, String password) {
+        return adminRepository.findByUsernameAndPassword(username, password);
+    }
+
+
+    @Override
+    public void updateAdminPassword(String username, String newPassword) {
+        Admin admin = adminRepository.findByUsername(username);
         if (admin != null) {
             admin.setPassword(newPassword);
             adminRepository.save(admin);
         }
     }
 
-	@Override
-	public List<Donor> viewAllDonors() {
-		  return donorRepository.findAll();
-	}
 
+    @Override
+    public List<Donor> viewAllDonors() {
+        return donorRepository.findAll();
+    }
 
 	
 

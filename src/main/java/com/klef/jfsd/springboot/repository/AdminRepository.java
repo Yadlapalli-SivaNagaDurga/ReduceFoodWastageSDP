@@ -10,7 +10,6 @@ import com.klef.jfsd.springboot.model.Candidate;
 
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
-    Admin findByEmailAndPassword(String email, String password);
-    Admin findByEmail(String email);
-   
+    Admin findByUsernameAndPassword(String username, String password);
+    Admin findByUsername(String username);
 }

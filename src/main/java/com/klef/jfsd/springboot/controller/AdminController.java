@@ -39,11 +39,10 @@ public class AdminController {
     public ModelAndView adminLoginForm() {
         return new ModelAndView("adminlogin");
     }
-
     @PostMapping("/loginAdmin")
-    public ModelAndView loginAdmin(@RequestParam("email") String email, 
+    public ModelAndView loginAdmin(@RequestParam("username") String username, 
                                    @RequestParam("password") String password) {
-        Admin admin = adminService.validateAdmin(email, password);
+        Admin admin = adminService.validateAdmin(username, password);
 
         if (admin != null) {
             // Successful login, redirect to adminNavbar.jsp
@@ -51,7 +50,7 @@ public class AdminController {
         } else {
             // Login failed, show error message and stay on login page
             ModelAndView mv = new ModelAndView("adminlogin");
-            mv.addObject("error", "Invalid email or password");
+            mv.addObject("error", "Invalid username or password");
             return mv;
         }
     }

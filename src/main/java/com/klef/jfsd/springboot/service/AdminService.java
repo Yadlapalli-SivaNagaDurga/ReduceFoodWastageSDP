@@ -8,8 +8,7 @@ import com.klef.jfsd.springboot.model.Donor;
 import com.klef.jfsd.springboot.model.DonorHistory;
 
 public interface AdminService {
-    Admin validateAdmin(String email, String password);
-    void updateAdminPassword(String email, String newPassword);
+    Admin validateAdmin(String username, String password);
+    void updateAdminPassword(String username, String newPassword);
     List<Donor> viewAllDonors();
-    
 }
