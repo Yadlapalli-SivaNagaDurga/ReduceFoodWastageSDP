@@ -42,6 +42,16 @@ public class RecipientServiceImpl implements RecipientService {
         return "Request submitted successfully";
     }
     
+    public boolean changePassword(String email, String currentPassword, String newPassword) {
+        Recipient recipient = recipientRepository.findByEmail(email);
+        if (recipient != null && recipient.getPassword().equals(currentPassword)) {
+            recipient.setPassword(newPassword);
+            recipientRepository.save(recipient);
+            return true;
+        }
+        return false;
+    }
+    
     @Override
     public boolean resetPasswordByEmail(String email, String newPassword) {
         Recipient recipient = recipientRepository.findByEmail(email);

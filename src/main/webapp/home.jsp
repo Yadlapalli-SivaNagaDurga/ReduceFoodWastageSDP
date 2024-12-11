@@ -383,6 +383,9 @@ margin-right: 100px; /* Adjust the margin as needed */
 <button class="btn btn-outline-success" type="submit">Search</button>
 </form>
 <ul class="navbar-nav ml-auto">
+<a class="nav-link " href="chatbot.jsp" id="navbarDropdown" role="button">
+Help
+</a>
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 Login

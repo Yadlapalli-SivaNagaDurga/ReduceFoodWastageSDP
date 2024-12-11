@@ -82,4 +82,24 @@ public class RecipientController {
             return "redirect:/recipientforgot"; // Redirect back to the reset form
         }
     }
+    @PostMapping("/recipientchangePassword")
+    public String changePassword(@RequestParam("email") String email,
+                                 @RequestParam("currentPassword") String currentPassword,
+                                 @RequestParam("newPassword") String newPassword,
+                                 @RequestParam("confirmPassword") String confirmPassword,
+                                 Model model) {
+        if (!newPassword.equals(confirmPassword)) {
+            model.addAttribute("error", "New password and confirm password do not match.");
+            return "recipientchangePassword"; // Return to the same page with error
+        }
+        
+        boolean success = recipientService.changePassword(email, currentPassword, newPassword);
+        if (success) {
+            model.addAttribute("message", "Password changed successfully.");
+        } else {
+            model.addAttribute("error", "Invalid email or current password.");
+        }
+        return "recipientchangePassword"; // Return to the same page with message
+    }
 }
+

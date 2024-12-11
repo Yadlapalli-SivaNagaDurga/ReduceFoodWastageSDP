@@ -16,6 +16,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto"> <!-- Align items to the right -->
+                <li class="nav-item">
+                        <a class="nav-link" href="recipientchangePassword.jsp">ChangePassword</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="home.jsp">Logout</a>
                     </li>

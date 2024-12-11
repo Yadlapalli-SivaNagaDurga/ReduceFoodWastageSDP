@@ -2,6 +2,7 @@ package com.klef.jfsd.springboot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -106,9 +107,7 @@ public class DonorController {
         ModelAndView mv = new ModelAndView("recipientdonations");
         mv.addObject("donations", donations);
         return mv;
-    }
-
-    @GetMapping("/yourdonation")
+    }@GetMapping("/yourdonation")
     public ModelAndView viewDonation(HttpSession session) {
         Donor loggedInDonor = (Donor) session.getAttribute("loggedInDonor");
         ModelAndView mv = new ModelAndView("yourdonation");
@@ -128,6 +127,37 @@ public class DonorController {
         return mv;
     }
 
+
+    @PostMapping("/donorchangePassword")
+    public String changePassword(@RequestParam("email") String email,
+                                 @RequestParam("currentPassword") String currentPassword,
+                                 @RequestParam("newPassword") String newPassword,
+                                 @RequestParam("confirmPassword") String confirmPassword,
+                                 Model model) {
+        Donor donor = donorService.findByEmail(email);
+
+        if (donor == null) {
+            model.addAttribute("error", "Donor not found");
+            return "donorchangePassword";
+        }
+
+        if (!donor.getPassword().equals(currentPassword)) {
+            model.addAttribute("error", "Current password is incorrect");
+            return "donorchangePassword";
+        }
+
+        if (!newPassword.equals(confirmPassword)) {
+            model.addAttribute("error", "New passwords do not match");
+            return "donorchangePassword";
+        }
+
+        donor.setPassword(newPassword);
+        donorService.save(donor);
+
+        model.addAttribute("success", "Password changed successfully");
+        return "donorchangePassword";
+    }
+    
     @GetMapping("viewDonationRequests")
     public ModelAndView viewDonationRequests() {
         List<DonationRequest> donationRequests = donorService.viewDonationRequests();
@@ -136,4 +166,5 @@ public class DonorController {
         mv.addObject("donationrequestlist", donationRequests);
         return mv;
     }
+    
 }

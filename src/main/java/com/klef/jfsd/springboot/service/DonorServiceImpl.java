@@ -92,5 +92,12 @@ public class DonorServiceImpl implements DonorService {
         return String.valueOf(code);
     }
 
+    public void save(Donor donor) {
+        donorRepository.save(donor);
+    }
+
+    public Donor findByEmail(String email) {
+        return donorRepository.findByEmail(email);
+    }
     
 }

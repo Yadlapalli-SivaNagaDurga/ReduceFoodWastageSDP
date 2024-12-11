@@ -18,4 +18,6 @@ public interface DonorService {
     List<DonorHistory> getDonorHistory(Long donorId);
     List<DonationRequest> viewDonationRequests();
     String registerDonorAndGenerateCode(Donor donor);
+    public void save(Donor donor);
+	Donor findByEmail(String email);
 }

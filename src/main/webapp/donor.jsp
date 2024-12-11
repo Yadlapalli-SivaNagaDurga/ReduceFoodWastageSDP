@@ -6,6 +6,16 @@
     <title>Donor Dashboard - Reduce Food Wastage</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="CSS/donor.css"> <!-- Linking external CSS -->
+    <script type="text/javascript">
+        // Function to redirect after 2 minutes of inactivity
+        function sessionExpiredRedirect() {
+            alert("Session expired due to inactivity. Please log in again.");
+            window.location.href = "donorlogin.jsp?sessionExpired=true";
+        }
+
+        // Set a timeout of 2 minutes (120,000 milliseconds) before redirecting
+        setTimeout(sessionExpiredRedirect, 120000); // 120,000 ms = 2 minutes
+    </script>
 </head>
 <body class="d-flex flex-column min-vh-100"> <!-- Add flexbox for full height -->
     <nav class="navbar navbar-expand-lg custom-navbar">
@@ -15,6 +25,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto"> <!-- Use ml-auto to align items to the right -->
+                <li class="nav-item">
+                    <a class="nav-link" href="donorchangePassword.jsp">ChangePassword</a> <!-- ChangePassword link -->
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="home.jsp">Logout</a> <!-- Logout link -->
                 </li>
@@ -36,10 +49,7 @@
             <a href="makeDonation.jsp" class="btn btn-primary btn-lg custom-btn">Make a Donation</a>
             <a href="yourdonation" class="btn btn-info btn-lg custom-btn">Your Donations</a>
             <a href="viewDonationRequests" class="btn btn-success btn-lg custom-btn">Donation Requests</a>
-            <!-- Add this button in the existing dashboard layout -->
-<a href="feedback.jsp" class="btn btn-warning btn-lg custom-btn">Give Feedback</a>
-            
-            
+            <a href="feedback.jsp" class="btn btn-warning btn-lg custom-btn">Give Feedback</a>
         </div>
     </div>
 
